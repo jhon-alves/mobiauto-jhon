@@ -6,9 +6,13 @@ import {
 } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { Card } from './styles';
-import { IFipeApi } from '@/types';
 import { vehiclesActions } from '@/actions/vehicles.actions';
 import { useAppDispatch, useAppSelector } from '@/helpers/store';
+
+interface IFipeApi {
+  codigo: string;
+  nome: string;
+}
 
 interface IConsult {
   brands: IFipeApi[];
