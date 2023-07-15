@@ -54,7 +54,7 @@ export default function CardConsult({ brands, models, years }: IConsult) {
             renderInput={(params) => <TextField {...params} label="Marca" variant="outlined" />}
             loading={brands?.length === 0}
             value={filters.brand || null}
-            onChange={(e, _items, _options, details) => handleBrandFieldChange(details)}
+            onChange={(_e, _items, _options, details) => handleBrandFieldChange(details)}
           />
         </Grid>
         <Grid item xs={12}>
@@ -68,7 +68,7 @@ export default function CardConsult({ brands, models, years }: IConsult) {
             renderInput={(params) => <TextField {...params} label="Modelo" variant="outlined" />}
             loading={models.length === 0}
             value={filters.model}
-            onChange={(e, _items, _options, details) => handleModelFieldChange(details)}
+            onChange={(_e, _items, _options, details) => handleModelFieldChange(details)}
           />
         </Grid>
         {filters.model.nome.length > 0 && (
@@ -83,7 +83,7 @@ export default function CardConsult({ brands, models, years }: IConsult) {
               renderInput={(params) => <TextField {...params} label="Ano" variant="outlined" />}
               loading={years.length === 0}
               value={filters.year}
-              onChange={(e, _items, _options, details) => handleYearFieldChange(details)}
+              onChange={(_e, _items, _options, details) => handleYearFieldChange(details)}
             />
           </Grid>
         )}
