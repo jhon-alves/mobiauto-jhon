@@ -1,5 +1,4 @@
-import api from '@/helpers/api';
-import { IFipeApi } from '@/types';
+import { fetchApi } from '@/helpers/api';
 
 const services = {
   getAllBrands,
@@ -8,37 +7,33 @@ const services = {
   getVehicleDetails,
 };
 
-async function getAllBrands() {
+function getAllBrands() {
   try {
-    const response = await api.get('/carros/marcas');
-    return response.data;
+   return fetchApi('/carros/marcas');
   } catch (error) {
     console.error('Ocorreu um erro:', error);
   }
 }
 
-async function getAllModels(brand: string) {
+function getAllModels(brand: string) {
   try {
-    const response = await api.get(`/carros/marcas/${brand}/modelos`);
-    return response.data;
+    return fetchApi(`/carros/marcas/${brand}/modelos`);
   } catch (error) {
     console.error('Ocorreu um erro:', error);
   } 
 }
 
-async function getAllYears(brand: string, model: string) {
+function getAllYears(brand: string, model: string) {
   try {
-    const response = await api.get(`/carros/marcas/${brand}/modelos/${model}/anos`);
-    return response.data;
+    return fetchApi(`/carros/marcas/${brand}/modelos/${model}/anos`);
   } catch (error) {
     console.error('Ocorreu um erro:', error);
   }
 }
 
-async function getVehicleDetails(brand: string, model: string, year: string) {
+function getVehicleDetails(brand: string, model: string, year: string) {
   try {
-    const response = await api.get(`/carros/marcas/${brand}/modelos/${model}/anos/${year}`);
-    return response.data;
+    return fetchApi(`/carros/marcas/${brand}/modelos/${model}/anos/${year}`);
   } catch (error) {
     console.error('Ocorreu um erro:', error);
   }
