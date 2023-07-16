@@ -51,9 +51,10 @@ export default function CardConsult({ brands, models, years }: IConsult) {
             clearOnEscape={true}
             options={brands}
             getOptionLabel={(option) => option.nome || ''}
+            isOptionEqualToValue={(_option, value) => filters.brand.codigo === value.codigo}
             renderInput={(params) => <TextField {...params} label="Marca" variant="outlined" />}
             loading={brands?.length === 0}
-            value={filters.brand || null}
+            value={filters.brand}
             onChange={(_e, _items, _options, details) => handleBrandFieldChange(details)}
           />
         </Grid>
@@ -65,6 +66,7 @@ export default function CardConsult({ brands, models, years }: IConsult) {
             clearOnEscape={true}
             options={models}
             getOptionLabel={(option) => option.nome || ''}
+            isOptionEqualToValue={(_option, value) => filters.model.codigo === value.codigo}
             renderInput={(params) => <TextField {...params} label="Modelo" variant="outlined" />}
             loading={models.length === 0}
             value={filters.model}
@@ -80,6 +82,7 @@ export default function CardConsult({ brands, models, years }: IConsult) {
               clearOnEscape={true}
               options={years}
               getOptionLabel={(option) => option.nome || ''}
+              isOptionEqualToValue={(_option, value) => filters.year.codigo === value.codigo}
               renderInput={(params) => <TextField {...params} label="Ano" variant="outlined" />}
               loading={years.length === 0}
               value={filters.year}
