@@ -22,7 +22,7 @@ function getAllBrands() {
   return (dispatch: any) => {
     dispatch({ type: vehiclesConstants.GET_ALL_BRANDS_REQUEST });
     services.getAllBrands()
-      .then((data) => {
+      ?.then((data) => {
         dispatch({
           type: vehiclesConstants.GET_ALL_BRANDS_SUCCESS,
           payload: data
@@ -38,7 +38,7 @@ function getAllModels(brand: string) {
   return (dispatch: any) => {
     dispatch({ type: vehiclesConstants.GET_ALL_MODELS_REQUEST });
     services.getAllModels(brand)
-      .then((data) => {
+      ?.then((data) => {
         dispatch({
           type: vehiclesConstants.GET_ALL_MODELS_SUCCESS,
           payload: data.modelos
@@ -54,7 +54,7 @@ function getAllYears(brand: string, model: string) {
   return (dispatch: any) => {
     dispatch({ type: vehiclesConstants.GET_ALL_YEARS_REQUEST });
     services.getAllYears(brand, model)
-      .then((data) => {
+      ?.then((data) => {
         dispatch({
           type: vehiclesConstants.GET_ALL_YEARS_SUCCESS,
           payload: data
@@ -70,7 +70,7 @@ function getVehicleDetails(brand: string, model: string, year: string) {
   return (dispatch: any) => {
     dispatch({ type: vehiclesConstants.GET_VEHICLE_DETAILS_REQUEST });
     services.getVehicleDetails(brand, model, year)
-      .then((data) => {
+      ?.then((data) => {
         dispatch({
           type: vehiclesConstants.GET_VEHICLE_DETAILS_SUCCESS,
           payload: data

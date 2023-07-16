@@ -1,9 +1,10 @@
+import type { Middleware } from 'redux';
 import type { TypedUseSelectorHook } from 'react-redux';
 import { useDispatch, useSelector } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { rootReducer } from '@/reducers';
 
-const middlewares = [];
+const middlewares: Middleware[] = [];
 
 export const store = configureStore({
   reducer: rootReducer,
