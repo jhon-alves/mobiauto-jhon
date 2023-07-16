@@ -1,20 +1,10 @@
 'use client'
-import { useEffect } from 'react';
 import { Typography } from '@mui/material';
 import { Container, BoxContainer, Chip } from './styles';
-import { useAppDispatch, useAppSelector } from '@/helpers/store';
-import { vehiclesActions } from '@/actions/vehicles.actions';
+import { useResult } from '@/hooks/useResult';
 
 export default function ResultPage() {
-  const dispatch = useAppDispatch();
-  const {
-    vehicleDetails,
-    filters: { brand, model, year }
-  } = useAppSelector(state => state.vehicles);
-
-  useEffect(() => {
-    dispatch(vehiclesActions.getVehicleDetails(brand.codigo, model.codigo, year.codigo));
-  }, []);
+  const { vehicleDetails } = useResult();
 
   return (
     <Container maxWidth="lg">
