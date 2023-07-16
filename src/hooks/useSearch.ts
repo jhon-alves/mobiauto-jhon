@@ -14,19 +14,19 @@ export const useSearch = () => {
 
   useEffect(() => {
     dispatch(vehiclesActions.getAllBrands());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (brand.nome.length > 0) {
       dispatch(vehiclesActions.getAllModels(brand.codigo));
     }
-  }, [brand]);
+  }, [dispatch, brand]);
 
   useEffect(() => {
     if (model.nome.length > 0) {
       dispatch(vehiclesActions.getAllYears(brand.codigo, model.codigo));
     }
-  }, [model]);
+  }, [dispatch, brand, model]);
 
   return { brands, models, years, loading };
 }
