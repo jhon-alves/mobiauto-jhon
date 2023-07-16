@@ -1,11 +1,9 @@
 'use client'
-import { useEffect } from 'react';
 import { Grid as MuiGrid, Typography, styled } from '@mui/material';
 import Layout from '@/components/Layout';
 import CardConsult from '@/components/CardConsult';
 import CardSkeleton from '@/components/CardSkeleton';
-import { vehiclesActions } from '@/actions/vehicles.actions';
-import { useAppDispatch, useAppSelector } from '@/helpers/store';
+import { useSearch  } from '@/hooks/useSearch';
 
 const Grid = styled(MuiGrid)({
   display: 'flex',
@@ -14,30 +12,7 @@ const Grid = styled(MuiGrid)({
 });
 
 export default function SearchPage() {
-  const dispatch = useAppDispatch();
-  const { 
-    brands,
-    models,
-    years,
-    filters: { brand, model },
-    loading
-  } = useAppSelector((state) => state.vehicles);
-
-  useEffect(() => {
-    dispatch(vehiclesActions.getAllBrands());
-  }, []);
-
-  useEffect(() => {
-    if (brand.nome.length > 0) {
-      dispatch(vehiclesActions.getAllModels(brand.codigo));
-    }
-  }, [brand]);
-
-  useEffect(() => {
-    if (model.nome.length > 0) {
-      dispatch(vehiclesActions.getAllYears(brand.codigo, model.codigo));
-    }
-  }, [model]);
+  const { brands, models, years, loading } = useSearch();
 
   return (
     <Layout>
