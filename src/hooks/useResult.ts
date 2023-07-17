@@ -6,12 +6,13 @@ export const useResult = () => {
   const dispatch = useAppDispatch();
   const {
     vehicleDetails,
-    filters: { brand, model, year }
+    filters: { brand, model, year },
+    loading,
   } = useAppSelector(state => state.vehicles);
 
   useEffect(() => {
     dispatch(vehiclesActions.getVehicleDetails(brand.codigo, model.codigo, year.codigo));
   }, [dispatch, brand, model, year]);
 
-  return { vehicleDetails };
+  return { vehicleDetails, loading };
 }

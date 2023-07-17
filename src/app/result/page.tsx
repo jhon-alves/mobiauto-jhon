@@ -1,20 +1,24 @@
 'use client'
-import { Typography } from '@mui/material';
+import { Typography, CircularProgress } from '@mui/material';
 import { BoxContainer, Chip } from './styles';
 import { useResult } from '@/hooks/useResult';
 
 export default function ResultPage() {
-  const { vehicleDetails } = useResult();
+  const { vehicleDetails, loading } = useResult();
 
   return (
     <BoxContainer>
-      <Typography variant="h2">
-        Tabela Fipe: Preço {vehicleDetails?.Marca} {vehicleDetails?.Modelo}
-      </Typography>
-      <Chip label={vehicleDetails?.Valor} />
-      <Typography variant="caption">
-        Este é o preço de compra do veículo
-      </Typography>
+      {loading ? <CircularProgress /> : (
+        <>
+          <Typography variant="h2">
+            Tabela Fipe: Preço {vehicleDetails?.Marca} {vehicleDetails?.Modelo}
+          </Typography>
+          <Chip label={vehicleDetails?.Valor} />
+          <Typography variant="caption">
+            Este é o preço de compra do veículo
+          </Typography>
+        </>
+      )}
     </BoxContainer>
   );
 }
