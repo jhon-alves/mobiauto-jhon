@@ -3,6 +3,10 @@ import {
   Button,
   TextField,
   Autocomplete,
+  FormControl,
+  RadioGroup,
+  FormControlLabel,
+  Radio
 } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { Card } from './styles';
@@ -23,7 +27,12 @@ interface IConsult {
 export default function CardConsult({ brands, models, years }: IConsult) {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const { filters } = useAppSelector(state => state.vehicles);
+  const { filters, typeVehicle } = useAppSelector(state => state.vehicles);
+
+  function handleVehicleFieldChange(e: any) {
+    const { name, value } = e.target;
+    dispatch(vehiclesActions.changeVehicle(name, value));
+  }
 
   function handleBrandFieldChange(details: any) {
     const { codigo, nome } = details.option;
@@ -44,11 +53,38 @@ export default function CardConsult({ brands, models, years }: IConsult) {
     <Card>
       <Grid container spacing={3}>
         <Grid item xs={12}>
+          <FormControl>
+            <RadioGroup
+              row
+              name="typeVehicle"
+              value={typeVehicle}
+              onChange={handleVehicleFieldChange}
+            >
+              <FormControlLabel
+                value="carros"
+                control={<Radio />}
+                label="Carros"
+              />
+              <FormControlLabel
+                value="motos"
+                control={<Radio />}
+                label="Motos"
+              />
+              <FormControlLabel
+                value="caminhoes"
+                control={<Radio />}
+                label="Caminhões"
+              />
+            </RadioGroup>
+          </FormControl>
+        </Grid>
+        <Grid item xs={12}>
           <Autocomplete
             loadingText="Carregando"
             noOptionsText="Sem opcões"
             clearText="Excluir"
             clearOnEscape={true}
+            disableClearable={true}
             options={brands}
             getOptionLabel={(option) => option.nome || ''}
             isOptionEqualToValue={(_option, value) => filters.brand.codigo === value.codigo}
@@ -64,6 +100,7 @@ export default function CardConsult({ brands, models, years }: IConsult) {
             noOptionsText="Sem opcões"
             clearText="Excluir"
             clearOnEscape={true}
+            disableClearable={true}
             options={models}
             getOptionLabel={(option) => option.nome || ''}
             isOptionEqualToValue={(_option, value) => filters.model.codigo === value.codigo}
@@ -80,6 +117,7 @@ export default function CardConsult({ brands, models, years }: IConsult) {
               noOptionsText="Sem opcões"
               clearText="Excluir"
               clearOnEscape={true}
+              disableClearable={true}
               options={years}
               getOptionLabel={(option) => option.nome || ''}
               isOptionEqualToValue={(_option, value) => filters.year.codigo === value.codigo}

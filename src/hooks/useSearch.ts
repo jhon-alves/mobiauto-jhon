@@ -9,24 +9,25 @@ export const useSearch = () => {
     models,
     years,
     filters: { brand, model },
+    typeVehicle,
     loading
   } = useAppSelector((state) => state.vehicles);
 
   useEffect(() => {
-    dispatch(vehiclesActions.getAllBrands());
-  }, [dispatch]);
+    dispatch(vehiclesActions.getAllBrands(typeVehicle));
+  }, [dispatch, typeVehicle]);
 
   useEffect(() => {
     if (brand.nome.length > 0) {
-      dispatch(vehiclesActions.getAllModels(brand.codigo));
+      dispatch(vehiclesActions.getAllModels(typeVehicle, brand.codigo));
     }
-  }, [dispatch, brand]);
+  }, [dispatch, typeVehicle, brand]);
 
   useEffect(() => {
     if (model.nome.length > 0) {
-      dispatch(vehiclesActions.getAllYears(brand.codigo, model.codigo));
+      dispatch(vehiclesActions.getAllYears(typeVehicle, brand.codigo, model.codigo));
     }
-  }, [dispatch, brand, model]);
+  }, [dispatch, typeVehicle, brand, model]);
 
   return { brands, models, years, loading };
 }

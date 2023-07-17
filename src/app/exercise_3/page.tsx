@@ -31,9 +31,9 @@ export default async function ExerciseThree() {
     'Jerry Smith'
   ].includes(item.name)).map((item: Character) => ({
     nome: item.name,
-    genero: item.gender,
+    genero: item.gender === 'Male' ? 'Homem' : 'Mulher',
     avatar: item.image,
-    especie: item.species
+    especie: item.species === 'Human' ? 'Humano' : item.species
   }));
 
   return (

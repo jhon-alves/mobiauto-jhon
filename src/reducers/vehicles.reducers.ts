@@ -5,6 +5,7 @@ let initialState = {
   models: [],
   years: [],
   vehicleDetails: {},
+  typeVehicle: 'carros',
   filters: {
     brand: {
       codigo: '',
@@ -24,7 +25,13 @@ let initialState = {
 
 export function vehicles(state = initialState, action: any) {
   switch (action.type) {
-    case vehiclesConstants.CHANGE_FIELD: {
+    case vehiclesConstants.CHANGE_VEHICLE:
+      return {
+        ...state,
+        [action.payload.name]: action.payload.value,
+      }
+
+    case vehiclesConstants.CHANGE_FIELD:
       return {
         ...state,
         filters: {
@@ -35,7 +42,26 @@ export function vehicles(state = initialState, action: any) {
           },
         }
       }
-    }
+
+    case vehiclesConstants.CLEAR_FILTERS:
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          brand: {
+            codigo: '',
+            nome: '',
+          },
+          model: {
+            codigo: '',
+            nome: '',
+          },
+          year: {
+            codigo: '',
+            nome: '',
+          },
+        }
+      }
 
     case vehiclesConstants.GET_ALL_BRANDS_REQUEST:
     case vehiclesConstants.GET_ALL_MODELS_REQUEST:

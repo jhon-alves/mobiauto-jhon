@@ -2,12 +2,24 @@ import vehiclesConstants from '@/constants/vehicles.constants';
 import services from '@/services';
 
 export const vehiclesActions = {
+  changeVehicle,
   changeField,
+  clearFilters,
   getAllBrands,
   getAllModels,
   getAllYears,
   getVehicleDetails
 };
+
+function changeVehicle(name: string, value: string) {
+  return (dispatch: any) => {
+    dispatch({
+      type: vehiclesConstants.CHANGE_VEHICLE,
+      payload: { name, value }
+    });
+    dispatch(clearFilters());
+  }
+}
 
 function changeField(name: string, codigo: string, nome: string) {
   return (dispatch: any) => {
@@ -18,10 +30,16 @@ function changeField(name: string, codigo: string, nome: string) {
   }
 }
 
-function getAllBrands() {
+function clearFilters() {
+  return (dispatch: any) => {
+    dispatch({ type: vehiclesConstants.CLEAR_FILTERS });
+  }
+}
+
+function getAllBrands(vehicle:string) {
   return (dispatch: any) => {
     dispatch({ type: vehiclesConstants.GET_ALL_BRANDS_REQUEST });
-    services.getAllBrands()
+    services.getAllBrands(vehicle)
       ?.then((data) => {
         dispatch({
           type: vehiclesConstants.GET_ALL_BRANDS_SUCCESS,
@@ -34,10 +52,10 @@ function getAllBrands() {
   }
 }
 
-function getAllModels(brand: string) {
+function getAllModels(vehicle:string, brand: string) {
   return (dispatch: any) => {
     dispatch({ type: vehiclesConstants.GET_ALL_MODELS_REQUEST });
-    services.getAllModels(brand)
+    services.getAllModels(vehicle, brand)
       ?.then((data) => {
         dispatch({
           type: vehiclesConstants.GET_ALL_MODELS_SUCCESS,
@@ -50,10 +68,10 @@ function getAllModels(brand: string) {
   }
 }
 
-function getAllYears(brand: string, model: string) {
+function getAllYears(vehicle:string, brand: string, model: string) {
   return (dispatch: any) => {
     dispatch({ type: vehiclesConstants.GET_ALL_YEARS_REQUEST });
-    services.getAllYears(brand, model)
+    services.getAllYears(vehicle, brand, model)
       ?.then((data) => {
         dispatch({
           type: vehiclesConstants.GET_ALL_YEARS_SUCCESS,
@@ -66,10 +84,10 @@ function getAllYears(brand: string, model: string) {
   }
 }
 
-function getVehicleDetails(brand: string, model: string, year: string) {
+function getVehicleDetails(vehicle:string, brand: string, model: string, year: string) {
   return (dispatch: any) => {
     dispatch({ type: vehiclesConstants.GET_VEHICLE_DETAILS_REQUEST });
-    services.getVehicleDetails(brand, model, year)
+    services.getVehicleDetails(vehicle, brand, model, year)
       ?.then((data) => {
         dispatch({
           type: vehiclesConstants.GET_VEHICLE_DETAILS_SUCCESS,

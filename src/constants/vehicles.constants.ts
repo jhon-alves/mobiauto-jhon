@@ -16,6 +16,8 @@ const vehiclesConstants = {
   GET_VEHICLE_DETAILS_FAILURE: 'GET_VEHICLE_DETAILS_FAILURE',
 
   CHANGE_FIELD: 'CHANGE_FIELD',
+  CHANGE_VEHICLE: 'CHANGE_VEHICLE',
+  CLEAR_FILTERS: 'CLEAR_FILTERS',
 }
 
 export default vehiclesConstants;
