@@ -23,11 +23,11 @@ export default function ExerciseOne() {
     <div>
       <h1>Exercício 1</h1>
       <ul>
-        <li>"4556364607935616"</li>
-        <li>"64607935616"</li>
-        <li>"1"</li>
-        <li>"Skippy"</li>
-        <li>"Nanananananananananana Batman!"</li>
+        <li>4556364607935616</li>
+        <li>64607935616</li>
+        <li>1</li>
+        <li>Skippy</li>
+        <li>Nanananananananananana Batman!</li>
       </ul>
       <p>Vá até o console do navegador para visualizar!</p>
     </div>

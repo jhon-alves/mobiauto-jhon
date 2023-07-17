@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 
 interface FirstObject {
   name: string;
@@ -12,12 +12,13 @@ interface DataObject {
 }
 
 export default function ExerciseTwo() {
-  const secondObject = { country: 'Japão', age: 33 };
   const [firstObject, setFirstObject] = useState<FirstObject>({
     name: 'Marcos',
     country: 'Brasil',
     age: 22
   });
+
+  const secondObject = useMemo(() => ({ country: 'Japão', age: 33 }), []);
 
   function updateData(currentObject: DataObject, newDataObject: DataObject) {
     const updatedObject: DataObject = { ...currentObject };
@@ -35,7 +36,7 @@ export default function ExerciseTwo() {
     const updated = updateData(firstObject, secondObject);
     setFirstObject(updated as FirstObject);
     console.log(updated);
-  }, []);
+  }, [firstObject, secondObject]);
 
   return (
     <div>
