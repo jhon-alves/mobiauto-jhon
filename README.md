@@ -20,9 +20,13 @@ yarn
 
 ```bash
 npm run dev
-# or
+# ou
 yarn dev
 ```
+
+## Exercícios
+
+Para visualizar os exercícios vá até a pasta src/app, lá estão separados por ordem.Ao abrir o link para testar coloquei botões no header da página para facilitar o acesso e visualização.
 
 ## Tecnologias usadas
 
