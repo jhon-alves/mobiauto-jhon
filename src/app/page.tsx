@@ -1,6 +1,5 @@
 'use client'
 import { Grid as MuiGrid, Typography, styled } from '@mui/material';
-import Layout from '@/components/Layout';
 import CardConsult from '@/components/CardConsult';
 import CardSkeleton from '@/components/CardSkeleton';
 import { useSearch  } from '@/hooks/useSearch';
@@ -15,7 +14,7 @@ export default function SearchPage() {
   const { brands, models, years, loading } = useSearch();
 
   return (
-    <Layout>
+    <>
       <Grid item xs={12}>
         <Typography variant="h2">Tabela Fipe</Typography>
       </Grid>
@@ -30,6 +29,6 @@ export default function SearchPage() {
           : <CardConsult brands={brands} models={models} years={years} />
         }
       </Grid>
-    </Layout>
+    </>
   );
 }

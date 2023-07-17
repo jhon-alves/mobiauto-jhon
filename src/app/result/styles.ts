@@ -3,14 +3,10 @@ import {
   styled,
   Box as MuiBox,
   Chip as MuiChip,
-  Container as MuiContainer
 } from '@mui/material';
 
-export const Container = styled(MuiContainer)(({ theme }) => ({
-  paddingTop: theme.spacing(8),
-}));
-
 export const BoxContainer = styled(MuiBox)(({ theme }) => ({
+  width: '100%',
   padding: theme.spacing(4),
   background: theme.palette.success.light,
   display: 'flex',
