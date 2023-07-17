@@ -6,6 +6,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { Provider } from 'react-redux';
 import { store } from '@/helpers/store';
 import theme from '../theme';
+import Layout from '@/components/Layout';
+import Navbar from '@/components/Navbar';
 
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
@@ -24,7 +26,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Provider store={store}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            {children}
+            <Navbar />
+            <Layout>
+              {children}
+            </Layout>
           </ThemeProvider>
         </Provider>         
       </body>
