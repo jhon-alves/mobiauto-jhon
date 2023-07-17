@@ -36,7 +36,7 @@ export default function ExerciseTwo() {
     const updated = updateData(firstObject, secondObject);
     setFirstObject(updated as FirstObject);
     console.log(updated);
-  }, [firstObject, secondObject]);
+  }, []);
 
   return (
     <div>
